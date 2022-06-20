@@ -1,0 +1,40 @@
+body{
+    overflow-x: hidden;
+}
+.central_container{
+    width: 600px; margin: auto;
+    height: 500px;
+}
+.slider{
+    /* max-width: 1000px; margin: auto; width: 100%; */
+    /* max-width: 300px; */
+    border:1px solid black;
+    border-radius: 20px;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    margin: auto;
+    /* display: flex; */
+    
+}
+.slider .imgContainer{
+    align-items: center;
+    display: flex;
+    /* flex-basis: 300px; */
+    transition: all 0.3s;
+}
+.slider img{
+    /* display: none; */
+    object-fit: contain;
+    /* max-width: 300px; */
+    width: 100%;
+    /* height: 300px;  */
+    
+}
+/* .slider img.visible{
+    display: block;
+    margin: auto;
+}
+.visibleBtn{
+    display: block;
+} */
