@@ -2,8 +2,8 @@ body{
     overflow-x: hidden;
 }
 .central_container{
-    width: 600px; margin: auto;
-    height: 500px;
+    max-width: 300px; margin: auto;
+    height: 200px;
 }
 .slider{
     /* max-width: 1000px; margin: auto; width: 100%; */
