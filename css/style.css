@@ -20,7 +20,9 @@ body{
 .sliderDots i{
     width: 13px;
     height: 13px;
-    background: url(../images/menu-dots-vertical-free-icon-font.svg) no-repeat;
+    background-color: #5ab6fe;
+    border-radius: 7.5px;
+    /* background: url(../images/menu-dots-vertical-free-icon-font.svg) no-repeat; */
     /* padding: 0 15px 0 0; */
 }
 .sliderDots i:last-child{
@@ -29,7 +31,8 @@ body{
 .sliderDots i.active{
     width: 20px;
     height: 20px;
-    background: url(../images/activeDot.svg) no-repeat;
+    border-radius: 10px;
+    /* background: url(../images/activeDot.svg) no-repeat; */
     /* padding: 0 15px 0 0; */
 }
 
@@ -38,18 +41,20 @@ body{
         width: 80%; margin: auto;
         height: 350px;
     }
-    .sliderDots i{
+    /* .sliderDots i{
         width: 9px;
         height: 9px;
+        border-radius: 4.5px;
         background: url(../images/DotForPhones.svg) no-repeat;
-        /* padding: 0 15px 0 0; */
+        padding: 0 15px 0 0;
     }
     .sliderDots i.active{
         width: 13px;
         height: 13px;
+        border-radius: 7.5px;
         background: url(../images/activeDotForPhones.svg) no-repeat;
-        /* padding: 0 15px 0 0; */
-    }  
+        padding: 0 15px 0 0;
+    }   */
 }
 @media screen and (max-width: 427px){
     .central_container{

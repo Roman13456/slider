@@ -13,16 +13,11 @@ const sliderDotsContainer = document.querySelector(".sliderDots")
 const imgContainer = document.querySelector(".imgContainer")
 const sliderParent = slider.parentElement.parentElement
 const imgArrayLength = imgArray.length
-// let sliderParentWidth = slider.parentElement.parentElement.offsetWidth
 let sliderParentWidthWithoutButtons = ""
 let sliderParentHeight = sliderParent.offsetHeight
-// console.dir(prevBtn)
 let shift = 0
 let counter = 0
-// let imgContainerStyle = ""
 function centerImg(array){
-    // console.dir(img)
-    // console.dir(img.offsetWidth)
     array.forEach(function(element){
         let leftAndRightMargins = (sliderParentWidthWithoutButtons - element.offsetWidth)/2
         let topAndBottomMargins = (sliderParentHeight - element.offsetHeight)/2
@@ -30,9 +25,20 @@ function centerImg(array){
     })
 }
 addDots()
+function responsiveDotSize (){
+    const sliderDotsArray = sliderDotsContainer.querySelectorAll("i")
+    let dotSize = sliderParent.offsetWidth*0.5/sliderDotsArray.length*0.5
+    sliderDotsArray.forEach(function(element){
+        element.style=`width:${dotSize}px;height:${dotSize}px;border-radius:${dotSize/2}px`
+        if (element.classList.contains("active")){
+            element.style=`width:${dotSize*1.5}px;height:${dotSize*1.5}px;border-radius:${dotSize/2*1.5}px`
+        }
+    })
+}
 function sliderInit(){
     activeDot()
     btnLimits()
+    responsiveDotSize ()
     sliderParentWidthWithoutButtons = sliderParent.offsetWidth-prevBtn.clientWidth-nextBtn.clientWidth
     sliderUi.style.width = `${sliderParent.offsetWidth}px`
     sliderDotsContainer.style.maxWidth=`${sliderParent.offsetWidth*0.5}px`
@@ -85,6 +91,7 @@ nextBtn.addEventListener("click",function(){
     addTransform()
     counter+=1
     activeDot()
+    responsiveDotSize ()
     btnLimits()
 })
 prevBtn.addEventListener("click",function(){
@@ -92,6 +99,7 @@ prevBtn.addEventListener("click",function(){
     addTransform()
     counter-=1
     activeDot()
+    responsiveDotSize ()
     btnLimits()
 })
 function activeDot(){
@@ -109,6 +117,7 @@ function addDots(){
             counter=i
             shift = -(i*sliderParentWidthWithoutButtons)
             activeDot()
+            responsiveDotSize ()
             addTransform()
             btnLimits()
         })
