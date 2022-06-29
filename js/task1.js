@@ -25,7 +25,7 @@ function centerImg(array){
     })
 }
 addDots()
-function responsiveDotSize (){
+function calcResponsiveDotSize (){
     const sliderDotsArray = sliderDotsContainer.querySelectorAll("i")
     let dotSize = sliderParent.offsetWidth*0.5/sliderDotsArray.length*0.5
     sliderDotsArray.forEach(function(element){
@@ -38,7 +38,7 @@ function responsiveDotSize (){
 function sliderInit(){
     activeDot()
     btnLimits()
-    responsiveDotSize ()
+    calcResponsiveDotSize ()
     sliderParentWidthWithoutButtons = sliderParent.offsetWidth-prevBtn.clientWidth-nextBtn.clientWidth
     sliderUi.style.width = `${sliderParent.offsetWidth}px`
     sliderDotsContainer.style.maxWidth=`${sliderParent.offsetWidth*0.5}px`
@@ -91,7 +91,7 @@ nextBtn.addEventListener("click",function(){
     addTransform()
     counter+=1
     activeDot()
-    responsiveDotSize ()
+    calcResponsiveDotSize ()
     btnLimits()
 })
 prevBtn.addEventListener("click",function(){
@@ -99,7 +99,7 @@ prevBtn.addEventListener("click",function(){
     addTransform()
     counter-=1
     activeDot()
-    responsiveDotSize ()
+    calcResponsiveDotSize ()
     btnLimits()
 })
 function activeDot(){
@@ -117,7 +117,7 @@ function addDots(){
             counter=i
             shift = -(i*sliderParentWidthWithoutButtons)
             activeDot()
-            responsiveDotSize ()
+            calcResponsiveDotSize ()
             addTransform()
             btnLimits()
         })

@@ -18,10 +18,10 @@ body{
     margin: auto;
 }
 .sliderDots i{
-    width: 13px;
-    height: 13px;
+    /* width: 13px;                          /*тут js сам вираховує розміри точок
+    height: 13px; */
     background-color: #5ab6fe;
-    border-radius: 7.5px;
+    /* border-radius: 7.5px; */
     /* background: url(../images/menu-dots-vertical-free-icon-font.svg) no-repeat; */
     /* padding: 0 15px 0 0; */
 }
@@ -29,9 +29,9 @@ body{
     padding: 0;
 }
 .sliderDots i.active{
-    width: 20px;
+    /* width: 20px;
     height: 20px;
-    border-radius: 10px;
+    border-radius: 10px; */
     /* background: url(../images/activeDot.svg) no-repeat; */
     /* padding: 0 15px 0 0; */
 }
