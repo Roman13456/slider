@@ -28,10 +28,13 @@ addDots()
 function calcResponsiveDotSize (){
     const sliderDotsArray = sliderDotsContainer.querySelectorAll("i")
     let dotSize = sliderParent.offsetWidth*0.5/sliderDotsArray.length*0.5
+    sliderDotsContainer.style.maxWidth=`${sliderParent.offsetWidth*0.5}px`
+    sliderDotsContainer.style.height=`${dotSize*1.5}px`
     sliderDotsArray.forEach(function(element){
-        element.style=`width:${dotSize}px;height:${dotSize}px;border-radius:${dotSize/2}px`
         if (element.classList.contains("active")){
             element.style=`width:${dotSize*1.5}px;height:${dotSize*1.5}px;border-radius:${dotSize/2*1.5}px`
+        }else{
+            element.style=`width:${dotSize}px;height:${dotSize}px;border-radius:${dotSize/2}px`
         }
     })
 }
@@ -41,8 +44,6 @@ function sliderInit(){
     calcResponsiveDotSize ()
     sliderParentWidthWithoutButtons = sliderParent.offsetWidth-prevBtn.clientWidth-nextBtn.clientWidth
     sliderUi.style.width = `${sliderParent.offsetWidth}px`
-    sliderDotsContainer.style.maxWidth=`${sliderParent.offsetWidth*0.5}px`
-    sliderParentHeight = sliderParent.offsetHeight
     slider.style=`max-width:${sliderParentWidthWithoutButtons}px`
     const imgContainerWidth = sliderParentWidthWithoutButtons*imgArrayLength
     imgContainer.style.width=`${imgContainerWidth}px`
@@ -108,6 +109,12 @@ function activeDot(){
         element.classList.remove("active")
     })
     sliderDotsContainerArray[counter].classList.add("active")
+    // sliderDotsContainerArray[counter].classList.add("active")
+    // let arr = Array.from(sliderDotsContainerArray)
+    // arr.splice(counter,1)
+    // arr.forEach(function(element){
+    //     element.classList.remove("active")
+    // })
 }
 function addDots(){
     for(let i=0; i<imgContainersArray.length; i++){

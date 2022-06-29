@@ -21,6 +21,7 @@ body{
     /* width: 13px;                          /*тут js сам вираховує розміри точок
     height: 13px; */
     background-color: #5ab6fe;
+    transition: 0.3s;
     /* border-radius: 7.5px; */
     /* background: url(../images/menu-dots-vertical-free-icon-font.svg) no-repeat; */
     /* padding: 0 15px 0 0; */
