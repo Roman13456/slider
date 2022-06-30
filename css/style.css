@@ -17,18 +17,19 @@ body{
     align-items: center;
     margin: auto;
 }
-.sliderDots i{
+.sliderDots .circle{
     /* width: 13px;                          /*тут js сам вираховує розміри точок
     height: 13px; */
     background-color: #5ab6fe;
+    margin: auto;
     transition: 0.3s;
     /* border-radius: 7.5px; */
     /* background: url(../images/menu-dots-vertical-free-icon-font.svg) no-repeat; */
     /* padding: 0 15px 0 0; */
 }
-.sliderDots i:last-child{
+/* .sliderDots i:last-child{
     padding: 0;
-}
+} */
 .sliderDots i.active{
     /* width: 20px;
     height: 20px;
@@ -83,6 +84,7 @@ body{
 }
 .slider .imgContainer div{
     flex: 1 0 auto;
+    position: relative;
 }
 .slider img{
     /* display: none; */
@@ -91,6 +93,11 @@ body{
     /* width: 100%; */
     /* height: 300px;  */
     margin: auto;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
 }
 /* .slider img.visible{
     display: block;

@@ -17,43 +17,25 @@ let sliderParentWidthWithoutButtons = ""
 let sliderParentHeight = sliderParent.offsetHeight
 let shift = 0
 let counter = 0
-function centerImg(array){
-    array.forEach(function(element){
-        let leftAndRightMargins = (sliderParentWidthWithoutButtons - element.offsetWidth)/2
-        let topAndBottomMargins = (sliderParentHeight - element.offsetHeight)/2
-        element.style.margin=`${topAndBottomMargins}px ${leftAndRightMargins}px`
-    })
-}
+
 addDots()
-function calcResponsiveDotSize (){
-    const sliderDotsArray = sliderDotsContainer.querySelectorAll("i")
-    let dotSize = sliderParent.offsetWidth*0.5/sliderDotsArray.length*0.5
-    sliderDotsContainer.style.maxWidth=`${sliderParent.offsetWidth*0.5}px`
-    sliderDotsContainer.style.height=`${dotSize*1.5}px`
-    sliderDotsArray.forEach(function(element){
-        if (element.classList.contains("active")){
-            element.style=`width:${dotSize*1.5}px;height:${dotSize*1.5}px;border-radius:${dotSize/2*1.5}px`
-        }else{
-            element.style=`width:${dotSize}px;height:${dotSize}px;border-radius:${dotSize/2}px`
-        }
-    })
-}
 function sliderInit(){
     activeDot()
     btnLimits()
     calcResponsiveDotSize ()
+    sliderParentHeight = sliderParent.offsetHeight
     sliderParentWidthWithoutButtons = sliderParent.offsetWidth-prevBtn.clientWidth-nextBtn.clientWidth
     sliderUi.style.width = `${sliderParent.offsetWidth}px`
-    slider.style=`max-width:${sliderParentWidthWithoutButtons}px`
+    slider.style=`max-width:${sliderParentWidthWithoutButtons}px; height:${sliderParentHeight}px`
     const imgContainerWidth = sliderParentWidthWithoutButtons*imgArrayLength
     imgContainer.style.width=`${imgContainerWidth}px`
     imgContainersArray.forEach(function(element){
-        element.style=`width:${sliderParentWidthWithoutButtons}px; `
+        element.style=`width:${sliderParentWidthWithoutButtons}px; height:${sliderParentHeight}px`
     })
     imgArray.forEach(function(element){
         element.style=`max-width:${sliderParentWidthWithoutButtons}px; max-height:${sliderParentHeight}px`
     })
-    centerImg(document.querySelectorAll(".slider img"))
+    // centerImg(document.querySelectorAll(".slider img"),sliderParentWidthWithoutButtons,sliderParentHeight)
 }
 window.onload = sliderInit
 window.addEventListener("resize",sliderInit)
@@ -104,7 +86,7 @@ prevBtn.addEventListener("click",function(){
     btnLimits()
 })
 function activeDot(){
-    const sliderDotsContainerArray =  sliderDotsContainer.querySelectorAll("i")
+    const sliderDotsContainerArray =  sliderDotsContainer.querySelectorAll(".circle")
     sliderDotsContainerArray.forEach(function(element){
         element.classList.remove("active")
     })
@@ -118,8 +100,8 @@ function activeDot(){
 }
 function addDots(){
     for(let i=0; i<imgContainersArray.length; i++){
-        sliderDotsContainer.insertAdjacentHTML("beforeend",'<i></i>')
-        const sliderDotsArray = sliderDotsContainer.querySelectorAll("i")
+        sliderDotsContainer.insertAdjacentHTML("beforeend",'<div class="dotContainer"><div class="circle"></div></div>')
+        const sliderDotsArray = sliderDotsContainer.querySelectorAll(".circle")
         sliderDotsArray[i].addEventListener("click",function(){
             counter=i
             shift = -(i*sliderParentWidthWithoutButtons)
@@ -131,4 +113,33 @@ function addDots(){
         
     }
 }
+function calcResponsiveDotSize (){
+    const sliderDotsArray = sliderDotsContainer.querySelectorAll(".circle")
+    const sliderDotsArrayContainer = sliderDotsContainer.querySelectorAll(".dotContainer")
+    let dotSize = sliderParent.offsetWidth*0.5/sliderDotsArray.length*0.5
+    sliderDotsArrayContainer.forEach((element)=>{
+        element.style=`width:${dotSize*1.5}px;height:${dotSize*1.5}px;border-radius:${dotSize/2*1.5}px;position:relative`
+    })
+    sliderDotsContainer.style.maxWidth=`${sliderParent.offsetWidth*0.5}px`
+    sliderDotsContainer.style.height=`${dotSize*1.5}px`
+    sliderDotsArray.forEach(function(element){
+        if (element.classList.contains("active")){
+            element.style=`width:${dotSize*1.5}px;height:${dotSize*1.5}px;border-radius:${dotSize/2*1.5}px;`
+        }else{
+            element.style=`width:${dotSize}px;height:${dotSize}px;border-radius:${dotSize/2}px;position:absolute;left:0;
+            right:0;
+            top:0;
+            bottom:0;`
+            // centerImg(sliderDotsArray,dotSize,dotSize)
+        }
+        
+    })
+}
+// function centerImg(array,width,height){
+//     array.forEach(function(element){
+//         let leftAndRightMargins = (width - element.offsetWidth)/2
+//         let topAndBottomMargins = (height - element.offsetHeight)/2
+//         element.style.margin=`${topAndBottomMargins}px ${leftAndRightMargins}px`
+//     })
+// }
 
