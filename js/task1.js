@@ -20,11 +20,12 @@ let counter = 0
 
 addDots()
 function sliderInit(){
-    activeDot()
-    btnLimits()
-    calcResponsiveDotSize ()
     sliderParentHeight = sliderParent.offsetHeight
     sliderParentWidthWithoutButtons = sliderParent.offsetWidth-prevBtn.clientWidth-nextBtn.clientWidth
+    activeDot()
+    btnLimits()
+    calcResponsiveDotSize()
+    calcDynamicShift()
     sliderUi.style.width = `${sliderParent.offsetWidth}px`
     slider.style=`max-width:${sliderParentWidthWithoutButtons}px; height:${sliderParentHeight}px`
     const imgContainerWidth = sliderParentWidthWithoutButtons*imgArrayLength
@@ -39,7 +40,7 @@ function sliderInit(){
 }
 window.onload = sliderInit
 window.addEventListener("resize",sliderInit)
-window.addEventListener("resize",disableTransform)
+// window.addEventListener("resize",calcDynamicShift)
 function btnLimits(){
     if(counter==imgArrayLength-1){
         nextBtn.setAttribute("disabled","")
@@ -59,28 +60,26 @@ function btnLimits(){
 function addTransform(){
     imgContainer.style.transform=`translate(${shift}px)`
     let styleValue = imgContainer.getAttribute("style")
-    let place = styleValue.search("transition")
-    styleValue=styleValue.slice(0,place)
+    styleValue = styleValue.replace("transition: none 0s ease 0s;","")
     imgContainer.style=styleValue
 }
-function disableTransform(){
-    imgContainer.style.transform="none"
+function calcDynamicShift(){
+    shift = -(counter*sliderParentWidthWithoutButtons)
     imgContainer.style.transition="none"
-    shift = 0
-    counter=0
+    imgContainer.style.transform=`translate(${shift}px)`
 }
 nextBtn.addEventListener("click",function(){
-    shift-=sliderParentWidthWithoutButtons;
-    addTransform()
     counter+=1
+    calcDynamicShift()
+    addTransform()
     activeDot()
     calcResponsiveDotSize ()
     btnLimits()
 })
 prevBtn.addEventListener("click",function(){
-    shift+=sliderParentWidthWithoutButtons;
-    addTransform()
     counter-=1
+    calcDynamicShift()
+    addTransform()
     activeDot()
     calcResponsiveDotSize ()
     btnLimits()
@@ -104,11 +103,11 @@ function addDots(){
         const sliderDotsArray = sliderDotsContainer.querySelectorAll(".circle")
         sliderDotsArray[i].addEventListener("click",function(){
             counter=i
-            shift = -(i*sliderParentWidthWithoutButtons)
             activeDot()
-            calcResponsiveDotSize ()
-            addTransform()
+            calcResponsiveDotSize()
             btnLimits()
+            calcDynamicShift()
+            addTransform()
         })
         
     }
@@ -135,6 +134,9 @@ function calcResponsiveDotSize (){
         
     })
 }
+// function locateImg(){
+//     shift = counter*sliderParentWidthWithoutButtons
+// }
 // function centerImg(array,width,height){
 //     array.forEach(function(element){
 //         let leftAndRightMargins = (width - element.offsetWidth)/2
